@@ -24,9 +24,10 @@
 #   # config.content_security_policy_report_only = true
 # end
 Rails.application.config.content_security_policy do |policy|
-  policy.default_src :self, '*'  # 允许所有域名
-  policy.style_src :self, '*', 'unsafe-inline'  # 允许所有样式表，包括内联
-  policy.script_src :self, '*', 'unsafe-inline', 'unsafe-eval'  # 允许所有脚本，包括内联和 eval
-  policy.img_src :self, '*', :data
-  policy.font_src :self, '*', :data
+  policy.default_src :self
+  policy.font_src    :self, 'https://fonts.googleapis.com', 'https://fonts.gstatic.com'
+  policy.img_src     :self, 'data:', 'https:'
+  policy.script_src  :self, 'unsafe-inline', 'https://js.stripe.com', 'https://m.stripe.network', 'https://esm.sh' # 添加 unsafe-inline 和必要域名
+  policy.style_src   :self, 'unsafe-inline', 'https://fonts.googleapis.com' # 添加 unsafe-inline
+  policy.frame_src   :self, 'https://js.stripe.com' # 若涉及 Stripe 表单嵌入
 end
