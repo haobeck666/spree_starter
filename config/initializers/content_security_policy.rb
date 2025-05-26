@@ -24,8 +24,9 @@
 #   # config.content_security_policy_report_only = true
 # end
 Rails.application.config.content_security_policy do |policy|
-  policy.default_src :self
-  policy.style_src :self, :unsafe_inline, "https://fonts.googleapis.com", "https://fonts.gstatic.com"
-  policy.script_src :self, :unsafe_inline, "https://js.stripe.com", "https://m.stripe.network" # 添加哈希或 nonce
-  policy.font_src :self, "https://fonts.gstatic.com"
+  policy.default_src :self, '*'  # 允许所有域名
+  policy.style_src :self, '*', 'unsafe-inline'  # 允许所有样式表，包括内联
+  policy.script_src :self, '*', 'unsafe-inline', 'unsafe-eval'  # 允许所有脚本，包括内联和 eval
+  policy.img_src :self, '*', :data
+  policy.font_src :self, '*', :data
 end
