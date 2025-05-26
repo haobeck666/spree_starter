@@ -23,3 +23,9 @@
 #   # Report violations without enforcing the policy.
 #   # config.content_security_policy_report_only = true
 # end
+Rails.application.config.content_security_policy do |policy|
+  policy.default_src :self
+  policy.style_src :self, :unsafe_inline, "https://fonts.googleapis.com", "https://fonts.gstatic.com"
+  policy.script_src :self, :unsafe_inline, "https://js.stripe.com", "https://m.stripe.network" # 添加哈希或 nonce
+  policy.font_src :self, "https://fonts.gstatic.com"
+end
