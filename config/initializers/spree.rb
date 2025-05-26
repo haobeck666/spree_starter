@@ -97,3 +97,13 @@ if defined?(Devise) && Devise.respond_to?(:parent_controller)
   Devise.parent_controller = "Spree::StoreController"
   Devise.parent_mailer = "Spree::BaseMailer"
 end
+Spree.config do |config|
+  # 允许Spree管理界面的CSP
+  config.allowed_csp_domains = [
+    'https://js.stripe.com',
+    'https://m.stripe.network',
+    'https://esm.sh',
+    'https://fonts.googleapis.com',
+    'https://fonts.gstatic.com'
+  ]
+end
