@@ -24,8 +24,5 @@
 #   # config.content_security_policy_report_only = true
 # end
 Rails.application.config.content_security_policy do |policy|
-  policy.default_src :self
-  policy.style_src :self, :https, -> { "'nonce-#{request.content_security_policy_nonce}'" }
-  policy.script_src :self, :https
-  policy.font_src    :self, :https, :data
+  policy.style_src :self, :https, :unsafe_inline # 测试用：可替换为 nonce 后再优化
 end
