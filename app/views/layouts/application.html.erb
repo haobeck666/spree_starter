@@ -6,8 +6,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload", nonce: true %>
+    <%= javascript_importmap_tags nonce: true %>
+
+    <%# 如果你有手写的 <style> 标签，也这样写： %>
+    <%# <style nonce="<%= content_security_policy_nonce %>"> ... </style> %>
   </head>
 
   <body>
